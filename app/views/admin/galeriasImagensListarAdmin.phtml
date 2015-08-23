@@ -1,0 +1,9 @@
+<?php foreach ($view_imagens as $imagem) {	?>
+	<div class="col-lg-3 line" style="text-align: center;">
+		<img src="uploads/tb_<?php echo $imagem['imagem']; ?>" /><br /><br />
+		<a href="admin/galeriasExcluir/<?php echo $imagem['id']; ?>" style="font-size: 12px;" onclick="return Confirma(this, '#retornoGalerias','Deseja realmente excluir esta imagem?');" class="btn btn-danger">
+			<i class="fa fa-trash-o fa-lg"></i> Excluir
+		</a>
+		
+	</div>
+<?php } ?>

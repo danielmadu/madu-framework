@@ -1,0 +1,13 @@
+<div class="box">
+	<img src="uploads/tb_<?php echo $view_imagens[0]['imagem']; ?>" />
+</div>
+<form action="admin/galeriaEditarSalvar" id="formGaleria" method="POST" onsubmit="return Postar(this,'#retornoGaleria');">
+	<div class="box">Legenda:<br />
+		<textarea name="legenda" style="width: 200px; height: 180px;"><?php echo $view_imagens[0]['legenda']; ?></textarea>
+		<br />
+		<label class="box"><input type="checkbox" name="destaque" <?php if($view_imagens[0]['destaque']) echo 'checked="checked"'; ?> value="1" /> Destaque</label>				
+	</div>
+	<br class="quebra" />
+	<input type="hidden" name="modificar" value="<?php echo $view_imagens[0]['id']; ?>" />
+	<input type="submit" value="Salvar" class="btn btn-info" />
+</form>

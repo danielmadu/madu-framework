@@ -1,0 +1,32 @@
+<table class="table table-bordered table-condensed table-responsive table-striped">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th colspan="2">Ações</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($view_galerias as $galerias){ ?>
+		<tr>
+			<td width="800"><?php echo $galerias[nome]; ?></td>
+			<td>
+				<a href="admin/galeriasForm/editar/<?php echo $galerias[id]; ?>" class="btn btn-warning" onclick="return Abrir(this,'#galeriasForm');">
+					<i class="fa fa-pencil fa-lg"></i>
+				</a>
+
+				<a class="btn btn-danger" href="admin/galeriaExcluir/id/<?php echo $galerias[id]; ?>" onclick="return Abrir(this,'#retornoGalerias');">
+					<i class="fa fa-trash-o fa-lg"></i>
+				</a>
+			</td>
+		</tr>
+		<?php } ?>
+	</tbody>
+</table>
+
+<div class="clearfix"><br /></div>
+
+	<div class="col-lg-6">
+		<a <?php if($view_pagina>0){ ?>href="admin/galeriasListar/pagina/<?php echo $view_pagina-1; ?>" onclick="return Abrir(this,'#galerias');" <?php } else echo 'href="javascript:;"'; ?> class="btn btn-primary"><i class="fa fa-arrow-left fa-2x"></i></a>
+		
+		<a <?php if($view_total==$view_limite){ ?>href="admin/galeriasListar/pagina/<?php echo $view_pagina+1; ?>" onclick="return Abrir(this,'#galerias');" <?php } else echo 'href="javascript:;"'; ?> class="btn btn-primary"><i class="fa fa-arrow-right fa-2x"></i></a>
+	</div>

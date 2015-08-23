@@ -1,0 +1,197 @@
+<h1>Preferências</h1>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Logo</h3>
+  </div>
+  <div class="panel-body">
+  	<div id="retornoPostagem"></div><br />
+  	<form  action="admin/logo" class="box" name="uploadLogo" method="post" enctype="multipart/form-data">
+  		<label class="box">Imagem:<br />
+  			<input type="file" class="filestyle btn btn-primary" data-input="false" data-classButton="" name="logo"  />
+  		</label>
+  		<br class="quebra" />
+  		<input type="submit" class="btn btn-primary" value="Salvar" />
+  		<br />
+  		<br class="quebra" />
+  		<div id="BarLogo" class="progressLogo progress">
+        	<div class="barLogo bar"></div >
+        	<div class="percentLogo percent">0%</div >
+    	</div>
+  	</form>
+  	<br class="quebra" />
+  	<br />
+  	<div id="statusLogo"><?php if($view_css['logo']){ ?><img src="uploads/<?php echo $view_css['logo']; ?>" /><?php } ?></div>
+  </div>
+</div>		
+	<script>
+$(document).ready(function() {
+	var bar = $('.barLogo');
+	var percent = $('.percentLogo');
+	var status = $('#statusLogo');
+	$('form[name=uploadLogo]').ajaxForm({
+	beforeSend: function(a) {
+	    //status.empty();
+	    var percentVal = '0%';
+	    bar.width(percentVal)
+	    percent.html(percentVal);
+	},
+	uploadProgress: function(event, position, total, percentComplete) {
+	    var percentVal = percentComplete + '%';
+	    bar.width(percentVal)
+	    percent.html(percentVal);
+		//console.log(percentVal, position, total);
+	},
+	success: function() {
+	    var percentVal = '100%';
+	        bar.width(percentVal)
+	        percent.html(percentVal);
+	    },
+		complete: function(xhr) {
+			status.html(xhr.responseText);
+		}
+	}); 
+
+}); 
+      
+	</script>		
+	
+	
+<!--Template-->
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Template</h3>
+  </div>
+  <div class="panel-body">
+  	<div id="retornoTemplate"></div><br />
+  	
+  	
+  	<style>
+		.progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+		.bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
+		.percent { position:absolute; display:inline-block; top:3px; left:48%; }
+  	</style>
+
+  	
+  	<form  action="admin/fundoUpload" class="box" name="uploadFundo" method="post" enctype="multipart/form-data">
+  		<label class="box">Imagem Fundo:<br />
+  			<input type="file" class="filestyle btn btn-primary" name="backgroundImagem" />
+  		</label>
+  		<br class="quebra" />
+  		<input type="submit" class="btn btn-primary" value="Salvar" />
+  		<br class="quebra" />
+  		<br />
+  		<div id="BarFundo" class="progressFundo progress">
+        	<div class="barFundo bar"></div >
+        	<div class="percentFundo percent">0%</div >
+    	</div>
+  	</form>
+  	<br class="quebra" />
+    
+    <div id="statusFundo"><?php if($view_css['backgroundImagem']){ ?><img src="uploads/fundo_<?php echo $view_css['backgroundImagem']; ?>" /><?php } ?></div>
+	<script>
+$(document).ready(function() {
+	var bar = $('.barFundo');
+	var percent = $('.percentFundo');
+	var status = $('#statusFundo');
+	$('form[name=uploadFundo]').ajaxForm({
+	beforeSend: function() {
+	    status.empty();
+	    var percentVal = '0%';
+	    bar.width(percentVal)
+	    percent.html(percentVal);
+	},
+	uploadProgress: function(event, position, total, percentComplete) {
+	    var percentVal = percentComplete + '%';
+	    bar.width(percentVal)
+	    percent.html(percentVal);
+		//console.log(percentVal, position, total);
+	},
+	success: function() {
+	    var percentVal = '100%';
+	        bar.width(percentVal)
+	        percent.html(percentVal);
+	    },
+		complete: function(xhr) {
+			status.html(xhr.responseText);
+		}
+	}); 
+
+});
+      
+	</script>
+  	
+  	<br class="quebra" />
+  	<form action="admin/template" id="formTemplate" method="POST" onsubmit="return Postar(this,'#retornoTemplate');">
+  	<label class="col-lg-3">Background:<br />	
+    	<div class="input-group color">
+		    <input type="text" name="background" value="<?php echo $view_css['background']; ?>" class="form-control" />
+		    <span class="input-group-addon"><i></i></span>
+		</div>
+    </label>
+    
+    <label class="col-lg-3">Menu:<br />	
+    	<div class="input-group color">
+		    <input type="text" name="navbar" value="<?php echo $view_css['navbar']; ?>" class="form-control" />
+		    <span class="input-group-addon"><i></i></span>
+		</div>
+    </label>
+    
+    <label class="col-lg-3">Menu Cor Fonte:<br />	
+    	<div class="input-group color">
+		    <input type="text" name="navbarFont" value="<?php echo $view_css['navbarFont']; ?>" class="form-control" />
+		    <span class="input-group-addon"><i></i></span>
+		</div>
+    </label>
+    
+    <div class="clearfix"></div>
+    
+    <label class="col-lg-3">Conteúdo:<br />	
+    	<div class="input-group color">
+		    <input type="text" name="conteudo" value="<?php echo $view_css['conteudo']; ?>" class="form-control" />
+		    <span class="input-group-addon"><i></i></span>
+		</div>
+    </label>
+    
+    <label class="col-lg-3">Conteúdo Cor Fonte:<br />	
+    	<div class="input-group color">
+		    <input type="text" name="conteudoFont" value="<?php echo $view_css['conteudoFont']; ?>" class="form-control" />
+		    <span class="input-group-addon"><i></i></span>
+		</div>
+    </label>
+    
+    <label class="col-lg-3">Rodapé:<br />
+    	<div class="input-group color">
+		    <input type="text" name="rodape" value="<?php echo $view_css['rodape']; ?>" class="form-control" />
+		    <span class="input-group-addon"><i></i></span>
+		</div>
+    </label>
+    
+    <label class="col-lg-3">Rodapé Cor Fonte:<br />
+    	<div class="input-group color">
+		    <input type="text" name="rodapeFont" value="<?php echo $view_css['rodapeFont']; ?>" class="form-control" />
+		    <span class="input-group-addon"><i></i></span>
+		</div>
+    </label>
+    
+    <div class="clearfix"></div>
+    
+    <br class="quebra" />
+    <input type="hidden" name="enviar" value="1" />
+    <input type="submit" class="btn btn-primary" value="Salvar" />
+    </form>
+    
+  </div>
+</div>	
+
+<script>
+$(function(){
+	$('.color').colorpicker();
+});
+</script>	
+
+
+
+		

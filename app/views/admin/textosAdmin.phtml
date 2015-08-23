@@ -1,0 +1,87 @@
+<h1>Textos Fixos</h1>
+
+<!--Contato-->
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Contato</h3>
+  </div>
+  <div class="panel-body">
+  	<div id="retornoContato"></div><br />
+  	<form action="admin/alterar" id="formContato" method="POST" onsubmit="return Postar(this,'#retornoContato');">
+    <textarea name="texto" id="contato" class="postagem" style="width: 100%; height: 200px;"><?php echo $view_dados[0]['texto']; ?></textarea>
+    <br />
+    <input type="hidden" name="modificar" value="<?php echo $view_dados[0]['id']; ?>" />
+    <input type="hidden" name="enviar" value="1" />
+    <input type="submit" class="btn btn-primary" value="Salvar" />
+    </form>
+  </div>
+</div>
+
+<!--Sobre-->
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sobre</h3>
+  </div>
+  <div class="panel-body">
+  	<div id="retornoSobre"></div><br />
+  	<form action="admin/alterar" id="formSobre" method="POST" onsubmit="return Postar(this,'#retornoSobre');">
+    <textarea name="texto" id="sobre" class="postagem" style="width: 100%; height: 200px;"><?php echo $view_dados[1]['texto']; ?></textarea>
+    <br />
+    <input type="hidden" name="modificar" value="<?php echo $view_dados[1]['id']; ?>" />
+    <input type="hidden" name="enviar" value="1" />
+    <input type="submit" class="btn btn-primary" value="Salvar" />
+    </form>
+  </div>
+</div>
+
+<!--Rodapé-->
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Rodapé</h3>
+  </div>
+  <div class="panel-body">
+  	<div id="retornoRodape"></div><br />
+  	<form action="admin/alterar" id="formRodape" method="POST" onsubmit="return Postar(this,'#retornoRodape');">
+    <textarea name="texto" id="sobre" class="rodape" style="width: 100%; height: 200px;"><?php echo $view_dados[2]['texto']; ?></textarea>
+    <br />
+    <input type="hidden" name="modificar" value="<?php echo $view_dados[2]['id']; ?>" />
+    <input type="hidden" name="enviar" value="1" />
+    <input type="submit" class="btn btn-primary" value="Salvar" />
+    </form>
+  </div>
+</div>
+
+<script>
+		$('.rodape').ckeditor({toolbar:"Basic"});
+		$('.postagem').ckeditor({
+			"extraPlugins": "imagebrowser,image2","imageBrowser_listUrl" : "http://localhost/Site/uploads/media/"
+			});
+</script>
+
+<!--Endereço-->
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Endereço</h3>
+  </div>
+  <div class="panel-body">
+  	<div id="retornoEndereco"></div><br />
+  	<form action="admin/alterar" id="formEndereco" method="POST" onsubmit="return Postar(this,'#retornoEndereco');">
+    <textarea name="texto" id="endereco" class="postagem" style="width: 100%; height: 200px;"><?php echo $view_dados[3]['texto']; ?></textarea>
+    <br />
+    <input type="hidden" name="modificar" value="<?php echo $view_dados[3]['id']; ?>" />
+    <input type="hidden" name="enviar" value="1" />
+    <input type="submit" class="btn btn-primary" value="Salvar" />
+    </form>
+  </div>
+</div>
+
+<script>
+		$('.endereco').ckeditor({toolbar:"Basic"});
+		$('.postagem').ckeditor({
+			"extraPlugins": "imagebrowser,image2","imageBrowser_listUrl" : "http://localhost/Site/uploads/media/"
+			});
+</script>

@@ -1,0 +1,55 @@
+<!--Galeria-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><?php if($view_galeria[0]['id']) echo 'Editar'; else echo 'Nova'; ?> Galeria</h3>
+  </div>
+  <div class="panel-body">
+    <div id="retornoImagemGaleria"></div><br />
+	<form action="admin/galeriasSalvar" id="formGalerias" method="POST" onsubmit="return Postar(this,'#retornoGalerias');">
+		<div class="col-lg-4">
+			Nome da Galeria:<br />
+			<input type="text" name="nome" class="form-control" value="<?php echo $view_galeria[0]['nome']; ?>" />
+		</div>
+		<div class="clearfix"><br /></div><br />
+		
+		<div class="col-lg-12">
+			<input type="submit" class="btn btn-primary" value="Salvar" />
+		</div>
+		<input type="hidden" name="modificar" value="<?php echo $view_galeria[0]['id']; ?>" />
+		<?php if($view_galeria[0]['id']){ ?>
+		<div class="clearfix"><br /></div><br />
+		<div id="queue"></div>
+		<input id="file_upload" name="file_upload" type="file" multiple="true">
+		<script type="text/javascript">
+			Abrir('#abreImagemGaleria','#imagens');
+			<?php $timestamp = time();?>
+			$(function() {
+				$('#file_upload').uploadify({
+					'formData'     : {
+						'timestamp' : '<?php echo $timestamp;?>',
+						'token'     : '<?php echo md5('unique_salt' . $timestamp);?>',
+						'galeria'	: '<?php echo $view_galeria[0]['id']; ?>'
+					},
+					'fileTypeDesc' : 'Imagens',
+	        		'fileTypeExts' : '*.gif; *.jpg; *.png; *.jpeg',
+					'swf'      : 'assets/js/uploadify.swf',
+					'uploader' : 'galeriasUpload/',
+					'onUploadSuccess' : function(file, data, response) {
+	        			$('#retornoImagemGaleria').html(data);
+	        			Abrir('#abreImagemGaleria','#imagens');
+	    			}
+				});
+			});
+		</script>
+		<?php } ?>
+	</form>
+	<br />
+	
+	
+	<div id="imagens"></div>
+	<a href="admin/galeriasImagensListar/galeria/<?php echo $view_galeria[0]['id']; ?>" id="abreImagemGaleria"></a>
+
+	
+
+  </div>
+</div>

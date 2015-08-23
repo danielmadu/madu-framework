@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base>
+		<link rel="stylesheet" href="css/browser.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		
+		<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="ajaxfileupload.js"></script>
+		<script src="jquery.form.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="browser.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<script type="text/x-template-html" id="js-template-image">
+				<div class="col-xs-2" style="text-align: center;">
+					<a href="javascript://" class="thumbnail js-image-link" data-url="%imageUrl%"><img src="%thumbUrl%"></a>
+					<a href="" data-url="%imageUrl2%" onclick="return Deletar(this);"><i class="fa fa-trash-o"></i></a>
+				</div>
+			</script>
+			
+		<form  action="upload.php" class="box" name="uploadLogo" method="post" enctype="multipart/form-data">
+	  		<label class="box">Imagem:<br />
+	  			<input type="file" class="filestyle btn btn-primary" data-input="false" data-classButton="" name="imagem"  />
+	  		</label>
+	  		<br class="quebra" />
+	  		<input type="submit" value="Salvar" />
+	  		<br />
+	  		<br class="quebra" />
+	  		<div id="BarLogo" class="progressLogo progress">
+	        	<div class="barLogo bar"></div >
+	        	<div class="percentLogo percent col-xs-5">0%</div >
+	    	</div>
+	  	</form>
+	  	<div id="statusLogo"></div>
+			
+			<ul class="folder-switcher" id="js-folder-switcher"></ul>
+	
+			<div class="images-container" id="js-images-container">Carregando..</div>
+	
+			<script type="text/javascript">
+				CkEditorImageBrowser.init();
+				
+				function Deletar(e){
+					
+					var confirm, imagem;
+					imagem = $(e).attr('data-url');
+					imagem = imagem.split('/');
+					imagem = imagem[imagem.length-1];
+					confirm = window.confirm('Tem certeza que deseja excluir esta imagem?');
+					
+					if(confirm){
+						$('#statusLogo').load('acoes.php?excluir='+imagem);
+					}
+					
+					return false;
+				}
+				
+				var bar = $('.barLogo');
+				var percent = $('.percentLogo');
+				var status = $('#statusLogo');
+				$('form[name=uploadLogo]').ajaxForm({
+				beforeSend: function() {
+				    //status.empty();
+				    var percentVal = '0%';
+				    bar.width(percentVal);
+				    percent.html(percentVal);
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+				    var percentVal = percentComplete + '%';
+				    bar.width(percentVal);
+				    percent.html(percentVal);
+					//console.log(percentVal, position, total);
+				},
+				success: function() {
+				    var percentVal = '100%';
+				        bar.width(percentVal);
+				        percent.html(percentVal);
+				    },
+					complete: function(xhr) {
+						//status.html(xhr.responseText);
+						location.reload();
+					}
+				}); 
+			
+	
+			      
+			</script>
+		</div>
+	</body>
+</html>

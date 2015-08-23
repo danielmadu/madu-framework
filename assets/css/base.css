@@ -1,0 +1,10 @@
+.box{
+	float:left; 
+	margin-right:10px;
+	text-align:left;
+	padding: 5px;
+}
+
+.quebra {
+	clear: both;
+}

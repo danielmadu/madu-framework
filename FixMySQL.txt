@@ -1,0 +1,1 @@
+SET PASSWORD FOR 'jurisfac_acess4'@'localhost' = PASSWORD('H2y4V~@eZ%(T');

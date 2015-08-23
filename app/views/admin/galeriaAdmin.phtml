@@ -1,0 +1,13 @@
+<?php foreach ($view_imagens as $imagem) {	?>
+	<div class="box" style="text-align: center;">
+		<img src="uploads/tb_<?php echo $imagem['imagem']; ?>" /><br /><br />
+		<a href="admin/galeriaExcluir/<?php echo $imagem['id']; ?>" style="font-size: 12px;" onclick="return Abrir(this, '#retornoGaleria');" class="btn btn-danger">
+			<i class="fa fa-trash-o fa-lg"></i> Excluir
+		</a>
+		
+		<a href="admin/galeriaEditar/<?php echo $imagem['id']; ?>" style="font-size: 12px;" onclick="return Abrir(this, '#galeria');" class="btn btn-primary">
+			<i class="fa fa-edit fa-lg"></i> Editar
+		</a>
+		
+	</div>
+<?php } ?>
